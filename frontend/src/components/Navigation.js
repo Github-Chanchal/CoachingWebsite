@@ -32,7 +32,7 @@ function NavigationBar() {
 
   return (
     <>
-      <Navbar bg="light" expand="lg" sticky="top">
+      <Navbar bg="light" expand="lg" sticky="top" >
         <Container className="mb-3" fill>
           <Navbar.Brand
             onClick={() => {
@@ -40,7 +40,7 @@ function NavigationBar() {
             }}
             className="bo"
           >
-            Things of Brand
+            CAD
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -53,7 +53,12 @@ function NavigationBar() {
             <Navbar.Brand className="bo" onClick={() => {
               navigate("/add");
             }}>AddBlog</Navbar.Brand>
-
+            <Navbar.Brand className="bo" onClick={() => {
+              navigate("/account");
+            }}>Account</Navbar.Brand> 
+            <Navbar.Brand className="bo" onClick={() => {
+              navigate("/contact");
+            }}>Contact</Navbar.Brand> 
             {user?.displayName ? (
               <div onClick={handleSignOut}>logout</div>
             ) : (
