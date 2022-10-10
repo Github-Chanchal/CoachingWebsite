@@ -2,19 +2,23 @@ import { request } from "express";
 import mongoose from "mongoose";
 import Blog from "../model/Blog.js";
 
-export const getAllBlogs = async (req, res, next) => {
+export const getAllBlogs = async (req,res) => {
   let blogs;
   try {
     blogs = await Blog.find({
-      email: req.params.email,
+      // email: req.params.email,
     });
+    res.json({
+      "message":"Blog is available",
+      "data":blogs
+    }).status(200);
   } catch (error) {
     console.log(err);
   }
   if (!blogs) {
     return res.status(404).send("No Blogs Found");
   }
-  return res.status(200).send({ blogs });
+
 };
 
 export const addBlogs = async (req, res, next) => {

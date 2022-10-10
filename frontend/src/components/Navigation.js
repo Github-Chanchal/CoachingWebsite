@@ -54,6 +54,9 @@ function NavigationBar() {
               navigate("/add");
             }}>AddBlog</Navbar.Brand>
             <Navbar.Brand className="bo" onClick={() => {
+              navigate("/allBlogs");
+            }}>AllBlogs</Navbar.Brand>
+            <Navbar.Brand className="bo" onClick={() => {
               navigate("/account");
             }}>Account</Navbar.Brand> 
             <Navbar.Brand className="bo" onClick={() => {

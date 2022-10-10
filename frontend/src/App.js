@@ -7,6 +7,7 @@ import Account from "./pages/Account.js";
 import Home from "./pages/Home.js";
 import AddBlog from "./pages/AddBlog";
 import Contact from "./pages/Contact";
+import AllBlogs from "./pages/AllBlogs";
 function App() {
   return (
     <div>
@@ -29,6 +30,14 @@ function App() {
             element={
               <Protected>
                 <AddBlog />
+              </Protected>
+            }
+          />
+          <Route
+            path="/allBlogs"
+            element={
+              <Protected>
+                <AllBlogs/>
               </Protected>
             }
           />

@@ -9,8 +9,8 @@ const createBlog = async (dataToSend) => {
   return await axios.post(URL + "/api/blogs", data);
 };
 
-const getAllBlogs = async (email) => {
-  return await axios.get(URL + "/api/blogs" + email);
+const getAllBlogs = async () => {
+  return await axios.get(URL + "/api/blogs/getBlogs");
 };
 
 const StoreImage = async (fileObject) => {

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import Carousel from "react-bootstrap/Carousel";
+import { createBlog, getAllBlogs } from "../api";
 import CoderoomImage from "../img/Coderoom.svg";
+
 
 const Home = () => {
   const [index, setIndex] = useState(0);
