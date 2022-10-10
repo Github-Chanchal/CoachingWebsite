@@ -23,7 +23,7 @@ export default function App() {
         <Form.Group>
           <Form.Label>Enter your query:</Form.Label>
           <Form.Control type="text" name="query" placeholder="Ask your query" />
-        </Form.Group>
+        </Form.Group> 
         <Button variant="primary" type="submit">
           Submit
         </Button>
