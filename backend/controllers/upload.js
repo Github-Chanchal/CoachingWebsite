@@ -1,12 +1,7 @@
-import path from "path";
-import fs from "fs";
-const __dirname = path.resolve();
-
-const uploadSingleFileAndSendUrl = async (req, res) => {
+const uploadSingleFileAndSendUrl = async(req,res)=>{
   console.log(req.file);
-  res.send(req.file.path);
-  // res.send(fs.readFileSync(path.join(__dirname + '/uploads/' + req.file)),
-  // )
-};
+  console.log(req.file.path);
+  res.status(200).send(req.file)
+}
 
-export { uploadSingleFileAndSendUrl };
+export {uploadSingleFileAndSendUrl}

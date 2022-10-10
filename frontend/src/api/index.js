@@ -13,13 +13,16 @@ const getAllBlogs = async (email) => {
   return await axios.get(URL + "/api/blogs" + email);
 };
 
-async function getImageUrl(fileObject) {
+const StoreImage = async (fileObject) => {
   const config = {
     header: { "Content-Type": "multipart/form-data" },
   };
-  const data = await axios.post(URL + "/uploads", fileObject, config);
-  console.log(data);
-  return data;
-}
+  const formData = new FormData()
+  formData.append('image',fileObject)
 
-export { createBlog, getAllBlogs, getImageUrl };
+  const  {data} = await axios.post(URL + "/upload", formData, config);
+  // const  {data} = await axios.post(URL + "/upload", fileObject, config);
+  return data;
+};
+
+export { createBlog, getAllBlogs, StoreImage };

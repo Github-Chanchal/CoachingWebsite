@@ -9,9 +9,13 @@ var app = express();
 
 app.use(cors());
 
+app.get("/",(req, res, next) => {
+  res.send("api working");
+})
+
 app.use(express.json());
 app.use("/api/blogs", blogRouter);
-app.use("/uploads", upload);
+app.use("/upload", upload);
 
 const __dirname = path.resolve();
 

@@ -3,6 +3,7 @@ import RichtextEditor from "./RichtextEditor.js";
 // import Button from 'react-bootstrap/Button';
 // import Form from 'react-bootstrap/Form';
 import { getImageUrl } from "../api/index.js";
+import {StoreImage} from "../api/index.js"
 import "bootstrap/dist/css/bootstrap.css";
 import {
   Card,
@@ -21,16 +22,26 @@ const AddBlog = () => {
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState([]);
-
+  const [path, setPath] = useState("");
+const url = "http://localhost:8080/";
   const storeBlog = async () => {
-    const fileUrl = await getImageUrl(image);
-    console.log(fileUrl);
-    // const data = await createBlog({
-    //   title,
-    //   value,
-    //   fileUrl,
-    // });
+    
+    const data = await createBlog({
+      title,
+      value
+    });
+    console.log(data);
   };
+  const onSubmitClick= async(e) =>{
+    e.preventDefault()
+    // console.log(file);
+    const data = await StoreImage(image);
+    const path = url +data.path.replace(`\\`,`/`);
+    console.log(path)
+    setPath(path);
+    // console.log("localhost:8080/"+data.path);
+  
+  }
 
   return (
     <div className="wrapper">
@@ -58,17 +69,7 @@ const AddBlog = () => {
           </div>
 
           {/* file field  */}
-          <form enctype="multipart/form-data">
-            <div className="mt-3">
-              <Label for="image">Select Post banner</Label>
-              <Input
-                id="image"
-                type="file"
-                name="image"
-                onChange={(e) => setImage(e.target.files[0])}
-              />
-            </div>
-          </form>
+          
 
           <Container className="text-center">
             <Button
@@ -85,6 +86,25 @@ const AddBlog = () => {
           </Container>
         </CardBody>
       </Card>
+      <form encType="multipart/form-data"> 
+                      <div className="form-group">
+                        <input type="file" name="image"  onChange={(e) => setImage(e.target.files[0])} />
+                        
+                      </div>
+                      <button type="submit" className="btn btn-primary" onClick={onSubmitClick} >Submit</button>
+                      <div onClick={()=>{
+                        var copyText = document.getElementById("myInput");
+
+                        // Select the text field
+                        copyText.select();
+                        copyText.setSelectionRange(0, 99999); // For mobile devices
+                      
+                         // Copy the text inside the text field
+                        navigator.clipboard.writeText(copyText.value);
+                      
+                        // Alert the copied text
+                      }}><input type="text" name="url" placeholder="image path" value={path} id="myInput"/></div>
+          </form> 
     </div>
 
     // <>

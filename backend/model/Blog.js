@@ -10,10 +10,7 @@ const blogSchema = new Schema({
   value: {
     type: String,
     required: true,
-  },
-  image: {
-    type: String,
-  },
+  }
 });
 
 export default mongoose.model("Blog", blogSchema);
