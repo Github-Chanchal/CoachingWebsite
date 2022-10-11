@@ -5,6 +5,8 @@ import RichtextEditor from "./RichtextEditor.js";
 import { getImageUrl } from "../api/index.js";
 import { StoreImage } from "../api/index.js";
 import "bootstrap/dist/css/bootstrap.css";
+import { useNavigate } from "react-router-dom";
+
 import {
   Card,
   CardBody,
@@ -18,6 +20,7 @@ import JoiditEditer from "jodit-react";
 import { createBlog } from "../api/index.js";
 
 const AddBlog = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState([]);
@@ -37,6 +40,7 @@ const AddBlog = () => {
       value
     });
     alert("Blog created successfully");
+    navigate("/allBlogs");
     console.log(data);
   };
   const onSubmitClick = async (e) => {

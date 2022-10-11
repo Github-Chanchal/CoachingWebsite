@@ -75,13 +75,11 @@ export const getById = async (req, res, next) => {
   return res.status(200).json({ blog });
 };
 
-export const deleteBLog = async (req, res, next) => {
-  const id = req.params.id;
-
+export const deleteBLogg = async (req, res) => {
   let blog;
   try {
-    blog = await Blog.findByIdAndRemove(id);
-    blog.save();
+    blog = await Blog.deleteOne({_id:req.params.id});
+    // blog.save();
   } catch (err) {
     console.log(err);
   }

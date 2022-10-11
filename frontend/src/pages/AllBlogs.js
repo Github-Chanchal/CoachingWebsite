@@ -3,16 +3,28 @@ import { getAllBlogs } from "../api/index.js";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/Delete';
+import { deleteBlogs } from "../api/index.js";
 
 const AllBlogs = () => {
   const [dataa, setdata] = useState();
 
+  const deleteBlog = async (id) => {
+    
+    let result = await deleteBlogs(id);
+        if (result) {
+            alert("rescord is deleted");
+            window.location.reload();
+        }
+    
+  };
+
   let data;
   const call = () => {
     data = getAllBlogs();
-    console.log(data);
+    // console.log(data);
     data.then((a) => {
-      console.log(a?.data?.data[1].value);
+      // console.log(a?.data?.data[1].value);
       setdata(a?.data?.data);
     });
     // document.getElementById("index").innerHTML = dataa;
@@ -27,6 +39,7 @@ const AllBlogs = () => {
       ? dataa.map((item) => {
           return (
             <Card style={{ width: "18rem" }}>
+              <DeleteIcon onClick={() => deleteBlog(item._id)} style={{marginLeft:'auto'}}/>
               <Card.Img variant="top" src={item.thumbnailUrl} />
               <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
