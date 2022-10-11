@@ -36,6 +36,7 @@ const AddBlog = () => {
       thumbnailUrl,
       value
     });
+    alert("Blog created successfully");
     console.log(data);
   };
   const onSubmitClick = async (e) => {
