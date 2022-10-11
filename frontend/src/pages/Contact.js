@@ -19,6 +19,7 @@ export default function App() {
             name="email"
             placeholder="Enter your your email address"
           />
+          <input type="hidden" name="_next" value="http://localhost:3000/" />
         </Form.Group>
         <Form.Group>
           <Form.Label>Enter your query:</Form.Label>
