@@ -52,6 +52,7 @@ export const getUser = async (req, res) => {
 export const updateRole = async (req, res) => {
   var email = req.body.email;
   var role = req.body.role;
+//   console.log(email,role)
   try {
     const data = await User.findOneAndUpdate(
       {

@@ -52,7 +52,7 @@ const updateuser = async (users) => {
   console.log(users)
   users.role = users.role=== "user" ? "Admin" : "user";
   console.log(users);
-   return await axios.put(URL + "/user/:users="+users);
+   return await axios.put(URL + "/user",users);
   };
 
 export { createBlog, getAllBlogs, StoreImage,deleteBlogs ,register,updateuser,getuser};
