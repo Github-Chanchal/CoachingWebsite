@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Card from 'react-bootstrap/Card';
+
 
 
 function ReadMore() {
-    // const data = getAllBlogs();
+  const location = useLocation();
+    const props = location.state;
+    console.log(props);
+    console.log(props.title);
+   useEffect(() => {
+    document.getElementById(props._id).innerHTML = props.value;
+   },[props]);
   return (
     <div>
-        <h1>Read More</h1>
-       {/* <Card style={{ width: "18rem" }}>
-              {/* <Card.Img variant="top" src={item.thumbnailUrl} />
-              <Card.Body>
-                {/* <Card.Title>{item.title}</Card.Title> */}
-                {/* <Card.Text>{item.value}</Card.Text> */}
-                {/* <Link to="/more"><Button  variant="primary">Read More</Button> </Link> */}
-              {/* </Card.Body> */} 
-            {/* </Card> */} 
+        <h1>{props.title}</h1>
+        <Card>
+        {/* <Card.Img variant="top" src={props.thumbnailUrl} /> */}
+        <Card.Body>
+          <Card.Text id={props._id}>
+          </Card.Text>
+        </Card.Body>
+      </Card>
     </div>
   )
 }

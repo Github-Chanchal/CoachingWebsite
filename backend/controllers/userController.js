@@ -2,7 +2,6 @@
 import User from "../model/User.js";
 
 export const registerUser = async (req, res) => {
-    console.log(req.body)
     try {
       const user = await User.find({
         email: req.body.email

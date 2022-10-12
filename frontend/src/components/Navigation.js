@@ -7,11 +7,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
-import {register} from "../api/index"
+import { register } from "../api/index";
 function NavigationBar() {
   const { logOut } = UserAuth();
   const { googleSignIn, user } = UserAuth();
-  const [profile_role, setRole]= useState()
+  const [profile_role, setRole] = useState();
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
@@ -30,22 +30,22 @@ function NavigationBar() {
       console.log(error);
     }
   };
-  async function userlogin(){
+  async function userlogin() {
     const email = user.email;
-      const role = "user";
-      const data = await register(email,role);
-      console.log(data?.data?.data[0].role)
-      setRole(data?.data?.data[0].role)
+    const role = "user";
+    const data = await register(email, role);
+    console.log(data?.data?.data[0].role);
+    setRole(data?.data?.data[0].role);
   }
-  useEffect( () => {
-    if(user){
-      userlogin()
+  useEffect(() => {
+    if (user) {
+      userlogin();
     }
-  },[user]);
+  }, [user]);
 
   return (
     <>
-      <Navbar bg="light" expand="lg" sticky="top" >
+      <Navbar bg="light" expand="lg" sticky="top">
         <Container className="mb-3" fill>
           <Navbar.Brand
             onClick={() => {
@@ -66,19 +66,53 @@ function NavigationBar() {
             {/* <Navbar.Brand className="bo" onClick={() => {
               navigate("/add");
             }}>AddBlog</Navbar.Brand> */}
-            <Navbar.Brand className="bo" onClick={() => {
-              navigate("/about");
-            }}>About</Navbar.Brand>
-            <Navbar.Brand className="bo" onClick={() => {
-              navigate("/services");
-            }}>Services</Navbar.Brand>
-            <Navbar.Brand className="bo" onClick={() => {
-              navigate("/allBlogs");
-            }}>AllBlogs</Navbar.Brand>
-           
-            <Navbar.Brand className="bo" onClick={() => {
-              navigate("/contact");
-            }}>Contact</Navbar.Brand> 
+            <Navbar.Brand
+              className="bo"
+              onClick={() => {
+                navigate("/about");
+              }}
+            >
+              About
+            </Navbar.Brand>
+            <Navbar.Brand
+              className="bo"
+              onClick={() => {
+                navigate("/services");
+              }}
+            >
+              Services
+            </Navbar.Brand>
+            <Navbar.Brand
+              className="bo"
+              onClick={() => {
+                navigate("/allBlogs");
+              }}
+            >
+              AllBlogs
+            </Navbar.Brand>
+
+            <Navbar.Brand
+              className="bo"
+              onClick={() => {
+                navigate("/contact");
+              }}
+            >
+              Contact
+            </Navbar.Brand>
+            {profile_role === "admin" ?( 
+            <Navbar.Brand
+            className="bo"
+            onClick={() => {
+              navigate("/Admin");
+            }}
+          >
+            Admin
+          </Navbar.Brand>
+            ):
+             ""
+             
+             }
+
             {user?.displayName ? (
               <div onClick={handleSignOut}>logout</div>
             ) : (
