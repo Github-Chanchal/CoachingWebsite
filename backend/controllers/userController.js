@@ -35,3 +35,19 @@ export const registerUser = async (req, res) => {
         .status(400);
     }
   };
+
+  export const getUser = async (req, res) => {
+    try {
+      const user = await User.find({  
+      })
+      res.send({user: user});
+      
+    } catch (error) {
+      res
+        .send({
+          message: "Some Error on Server",
+          error,
+        })
+        .status(400);
+    }
+  };
