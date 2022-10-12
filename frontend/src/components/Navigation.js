@@ -30,14 +30,16 @@ function NavigationBar() {
       console.log(error);
     }
   };
-
-  useEffect(async () => {
-    if(user){
-      const email = user.email;
+  async function userlogin(){
+    const email = user.email;
       const role = "user";
       const data = await register(email,role);
       console.log(data?.data?.data[0].role)
       setRole(data?.data?.data[0].role)
+  }
+  useEffect( () => {
+    if(user){
+      userlogin()
     }
   },[user]);
 
