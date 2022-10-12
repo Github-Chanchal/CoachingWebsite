@@ -29,4 +29,18 @@ const StoreImage = async (fileObject) => {
   return data;
 };
 
-export { createBlog, getAllBlogs, StoreImage,deleteBlogs};
+const register = async (email,role) => {
+ if(email){
+  const data = {
+    email,role
+  };
+  console.log("data", data);
+  return await axios.post(URL + "/user", data);
+ }
+ else{
+  return "email required"
+ }
+};
+
+
+export { createBlog, getAllBlogs, StoreImage,deleteBlogs ,register};

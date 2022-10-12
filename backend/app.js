@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import blogRouter from "./routes/blog-routes.js";
 import upload from "./routes/upload.js";
+import UserRouter from "./routes/userRouter.js";
 // var cors = require('cors');
 import cors from "cors";
 import path from "path";
@@ -16,6 +17,7 @@ app.get("/",(req, res, next) => {
 app.use(express.json());
 app.use("/api/blogs", blogRouter);
 app.use("/upload", upload);
+app.use("/user",UserRouter)
 
 const __dirname = path.resolve();
 

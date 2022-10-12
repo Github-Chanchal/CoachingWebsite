@@ -7,10 +7,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
-
+import {register} from "../api/index"
 function NavigationBar() {
   const { logOut } = UserAuth();
   const { googleSignIn, user } = UserAuth();
+  const [profile_role, setRole]= useState()
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
@@ -29,6 +30,16 @@ function NavigationBar() {
       console.log(error);
     }
   };
+
+  useEffect(async () => {
+    if(user){
+      const email = user.email;
+      const role = "user";
+      const data = await register(email,role);
+      console.log(data?.data?.data[0].role)
+      setRole(data?.data?.data[0].role)
+    }
+  },[user]);
 
   return (
     <>
