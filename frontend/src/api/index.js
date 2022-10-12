@@ -34,7 +34,7 @@ const register = async (email,role) => {
   const data = {
     email,role
   };
-  console.log("data", data);
+  // console.log("data", data);
   return await axios.post(URL + "/user", data);
  }
  else{

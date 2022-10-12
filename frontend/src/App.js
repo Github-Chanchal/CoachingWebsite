@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "./components/Navigation";
 import Protected from "./components/Protected";
+import ProtectedAdmin from "./components/ProtectedAdmin";
 import { AuthContextProvider } from "./context/AuthContext";
 import Home from "./pages/Home.js";
 // import AddBlog from "./pages/AddBlog";
@@ -11,6 +12,7 @@ import AllBlogs from "./pages/AllBlogs";
 import ReadMore from "./pages/ReadMore";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Admin from "./pages//Admin";
 function App() {
   return (
     <div>
@@ -34,6 +36,12 @@ function App() {
           <Route path="/services" element={<Services />} />
 
           <Route path="/more" element={<ReadMore />} />
+          <Route path="/Admin" element={<Protected>
+            <ProtectedAdmin>
+
+            <Admin />
+            </ProtectedAdmin>
+          </Protected>} />
 
           <Route path="/contact" element={<Contact />} />
         </Routes>
