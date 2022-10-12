@@ -17,6 +17,11 @@ const deleteBlogs = async (id) => {
     return await axios.delete(URL + "/api/blogs/deleteBlog/"+ id);
 }
 
+const getBlogById = async (id) => {
+  return await axios.get(URL + "/api/blogs/" +id);
+
+}
+
 const StoreImage = async (fileObject) => {
   const config = {
     header: { "Content-Type": "multipart/form-data" },
@@ -55,4 +60,4 @@ const updateuser = async (users) => {
    return await axios.put(URL + "/user",users);
   };
 
-export { createBlog, getAllBlogs, StoreImage,deleteBlogs ,register,updateuser,getuser};
+export { createBlog, getAllBlogs, StoreImage,deleteBlogs ,register,updateuser,getuser,getBlogById};

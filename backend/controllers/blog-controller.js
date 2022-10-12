@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+// import { createBlog } from "../../frontend/src/api/index.js";
 import Blog from "../model/Blog.js";
 
 export const getAllBlogs = async (req,res) => {
@@ -20,7 +21,7 @@ export const getAllBlogs = async (req,res) => {
 
 };
 
-export const addBlogs = async (req, res, next) => {
+export const addBlogs = async (req, res) => {
   try {
     // console.log(req.body);
     const data = await Blog.create({
@@ -65,6 +66,7 @@ export const getById = async (req, res, next) => {
   let blog;
   try {
     blog = await Blog.findById(id);
+    console.log(blog);
   } catch (err) {
     return console.log(err);
   }

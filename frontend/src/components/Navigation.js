@@ -63,55 +63,71 @@ function NavigationBar() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             ></Nav>
-            {/* <Navbar.Brand className="bo" onClick={() => {
-              navigate("/add");
-            }}>AddBlog</Navbar.Brand> */}
-            <Navbar.Brand
-              className="bo"
-              onClick={() => {
-                navigate("/about");
-              }}
-            >
-              About
-            </Navbar.Brand>
-            <Navbar.Brand
-              className="bo"
-              onClick={() => {
-                navigate("/services");
-              }}
-            >
-              Services
-            </Navbar.Brand>
-            <Navbar.Brand
-              className="bo"
-              onClick={() => {
-                navigate("/allBlogs");
-              }}
-            >
-              AllBlogs
-            </Navbar.Brand>
+            {profile_role === "Admin" ? (
+              <>
+                <Navbar.Brand
+                  className="bo"
+                  onClick={() => {
+                    navigate("/Admin");
+                  }}
+                >
+                  Admin
+                </Navbar.Brand>
+                <Navbar.Brand
+                  className="bo"
+                  onClick={() => {
+                    navigate("/add");
+                  }}
+                >
+                  AddBlog
+                </Navbar.Brand>
+                <Navbar.Brand
+                  className="bo"
+                  onClick={() => {
+                    navigate("/adminblog");
+                  }}
+                >
+                  Admin_Blog
+                </Navbar.Brand>
+              </>
+            ) : (
+              <>
+                <Navbar.Brand
+                  className="bo"
+                  onClick={() => {
+                    navigate("/about");
+                  }}
+                >
+                  About
+                </Navbar.Brand>
 
-            <Navbar.Brand
-              className="bo"
-              onClick={() => {
-                navigate("/contact");
-              }}
-            >
-              Contact
-            </Navbar.Brand>
-            {profile_role === "admin" ?( 
-            <Navbar.Brand
-            className="bo"
-            onClick={() => {
-              navigate("/Admin");
-            }}
-          >
-            Admin
-          </Navbar.Brand>
-            ):
-             ""
-             
-             }
+                <Navbar.Brand
+                  className="bo"
+                  onClick={() => {
+                    navigate("/services");
+                  }}
+                >
+                  Services
+                </Navbar.Brand>
+                <Navbar.Brand
+                  className="bo"
+                  onClick={() => {
+                    navigate("/allBlogs");
+                  }}
+                >
+                  AllBlogs
+                </Navbar.Brand>
+
+                <Navbar.Brand
+                  className="bo"
+                  onClick={() => {
+                    navigate("/contact");
+                  }}
+                >
+                  Contact
+                </Navbar.Brand>
+              </>
+            )}
 
             {user?.displayName ? (
               <div onClick={handleSignOut}>logout</div>

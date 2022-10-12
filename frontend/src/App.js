@@ -13,6 +13,8 @@ import ReadMore from "./pages/ReadMore";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Admin from "./pages//Admin";
+import Admin_Blog from "./pages/Admin_Blog";
+import AddBlog from "./pages/AddBlog";
 function App() {
   return (
     <div>
@@ -23,19 +25,20 @@ function App() {
           {/* <Route path="/add" element={<AddBlog />} /> */}
           {/* <Route path='/allBlogs' element={<RichtextEditor/>} /> */}
 
-          {/* <Route
+          <Route
             path="/add"
             element={
               <Protected>
                 <AddBlog />
               </Protected>
             }
-          /> */}
+          />
           <Route path="/allBlogs" element={<AllBlogs />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
 
           <Route path="/more" element={<ReadMore />} />
+          <Route path="/adminblog" element={<Admin_Blog />} />
           <Route path="/Admin" element={<Protected>
             <ProtectedAdmin>
 

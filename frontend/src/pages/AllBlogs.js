@@ -7,9 +7,6 @@ import { Link } from "react-router-dom";
 const AllBlogs = () => {
   const [dataa, setdata] = useState();
 
-  
-    
-
   let data;
   const call = () => {
     data = getAllBlogs();
@@ -34,7 +31,7 @@ const AllBlogs = () => {
               <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
                 {/* <Card.Text>{item.value}</Card.Text> */}
-                <Link to="/more" state={item}><Button  variant="primary">Read More</Button> </Link>
+                <Link to="/more" state={item}><Button  variant="primary">Read More</Button></Link>
               </Card.Body>
             </Card>
           );
