@@ -23,7 +23,7 @@ export const getAllBlogs = async (req,res) => {
 
 export const addBlogs = async (req, res, next) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const data = await Blog.create({
       ...req.body,
     });

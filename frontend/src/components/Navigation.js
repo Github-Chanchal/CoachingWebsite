@@ -50,15 +50,19 @@ function NavigationBar() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             ></Nav>
-            <Navbar.Brand className="bo" onClick={() => {
+            {/* <Navbar.Brand className="bo" onClick={() => {
               navigate("/add");
-            }}>AddBlog</Navbar.Brand>
+            }}>AddBlog</Navbar.Brand> */}
+            <Navbar.Brand className="bo" onClick={() => {
+              navigate("/about");
+            }}>About</Navbar.Brand>
+            <Navbar.Brand className="bo" onClick={() => {
+              navigate("/services");
+            }}>Services</Navbar.Brand>
             <Navbar.Brand className="bo" onClick={() => {
               navigate("/allBlogs");
             }}>AllBlogs</Navbar.Brand>
-            <Navbar.Brand className="bo" onClick={() => {
-              navigate("/account");
-            }}>Account</Navbar.Brand> 
+           
             <Navbar.Brand className="bo" onClick={() => {
               navigate("/contact");
             }}>Contact</Navbar.Brand> 
