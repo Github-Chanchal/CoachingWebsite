@@ -2,52 +2,81 @@
 import User from "../model/User.js";
 
 export const registerUser = async (req, res) => {
-    try {
-      const user = await User.find({
-        email: req.body.email
-      })
-      if(user.length > 0) {
-        res.json({
-            message: "old user",
-            data: user,
-          })
-          .status(200);
-      }
-      else{
-        const data = await User.create({
-            email: req.body.email,
-            role: req.body.role,
-          });
-          res
-            .json({
-              message: "Successfully Created",
-              data: data,
-            })
-            .status(200);
-      }
-      
-    } catch (error) {
+  try {
+    const user = await User.find({
+      email: req.body.email,
+    });
+    if (user.length > 0) {
       res
-        .send({
-          message: "Some Error on Server",
-          error,
+        .json({
+          message: "old user",
+          data: user,
         })
-        .status(400);
+        .status(200);
+    } else {
+      const data = await User.create({
+        email: req.body.email,
+        role: req.body.role,
+      });
+      res
+        .json({
+          message: "Successfully Created",
+          data: data,
+        })
+        .status(200);
     }
-  };
+  } catch (error) {
+    res
+      .send({
+        message: "Some Error on Server",
+        error,
+      })
+      .status(400);
+  }
+};
 
-  export const getUser = async (req, res) => {
-    try {
-      const user = await User.find({  
+export const getUser = async (req, res) => {
+  try {
+    const user = await User.find({});
+    res.send({ user: user });
+  } catch (error) {
+    res
+      .send({
+        message: "Some Error on Server",
+        error,
       })
-      res.send({user: user});
-      
-    } catch (error) {
-      res
-        .send({
-          message: "Some Error on Server",
-          error,
-        })
-        .status(400);
-    }
-  };
+      .status(400);
+  }
+};
+
+export const updateRole = async (req, res) => {
+  var email = req.body.email;
+  var role = req.body.role;
+  try {
+    const data = await User.findOneAndUpdate(
+      {
+        email: email,
+      },
+      {
+        $set: {
+            
+         role: role,
+          
+        },
+      }
+    );
+    res
+      .json({
+        message: "Successfully Updated",
+        data: data,
+      })
+      .status(200);
+  } catch (error) {
+    res
+      .send({
+        message: "Some Error on Server",
+        error,
+      })
+      .status(400);
+  }
+};
