@@ -25,22 +25,22 @@ const AllBlogs = () => {
   }, []);
 
   return (
-    // <div id="index"></div>
-    dataa
+    <div style={{display: "flex" , margin: 10}}>
+   { dataa
       ? dataa.map((item) => {
           return (
-            <Card style={{ width: "18rem" }}>
+            <Card style={{ width: "18rem" ,margin:5}} key={item._id}>
               <Card.Img variant="top" src={item.thumbnailUrl} />
               <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
                 {/* <Card.Text>{item.value}</Card.Text> */}
-                <Link to="/more"><Button  variant="primary">Read More</Button> </Link>
+                <Link to="/more" state={item}><Button  variant="primary">Read More</Button> </Link>
               </Card.Body>
             </Card>
           );
         })
-      : ""
-  );
+      : ""}
+ </div> );
 };
 
 export default AllBlogs;
