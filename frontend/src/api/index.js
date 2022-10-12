@@ -43,4 +43,16 @@ const register = async (email,role) => {
 };
 
 
-export { createBlog, getAllBlogs, StoreImage,deleteBlogs ,register};
+const getuser = async () => {
+  
+   return await axios.get(URL + "/user");
+  };
+
+const updateuser = async (users) => {
+  console.log(users)
+  users.role = users.role=== "user" ? "Admin" : "user";
+  console.log(users);
+   return await axios.put(URL + "/user/:users="+users);
+  };
+
+export { createBlog, getAllBlogs, StoreImage,deleteBlogs ,register,updateuser,getuser};

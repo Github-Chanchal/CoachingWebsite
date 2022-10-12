@@ -22,7 +22,7 @@ const ProtectedAdmin = ({ children }) => {
 
 
 
-  if (profile_role === "user" || profile_role === undefined) {
+  if (profile_role === "user") {
     return <Navigate to='/' />;
   }
 

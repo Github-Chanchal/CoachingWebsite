@@ -14,9 +14,9 @@ function ReadMore() {
    },[props]);
   return (
     <div>
-        <h1>{props.title}</h1>
-        <Card>
+        <Card className="text-center">
         {/* <Card.Img variant="top" src={props.thumbnailUrl} /> */}
+        <Card.Header>{props.title}</Card.Header>
         <Card.Body>
           <Card.Text id={props._id}>
           </Card.Text>
