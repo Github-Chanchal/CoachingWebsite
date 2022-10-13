@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// import { createBlog } from "../../frontend/src/api/index.js";
 import Blog from "../model/Blog.js";
 
 export const getAllBlogs = async (req,res) => {
@@ -43,15 +42,24 @@ export const addBlogs = async (req, res) => {
   }
 };
 
-export const updateBlogs = async (req, res, next) => {
-  const { title, description } = req.body;
-  const blogId = req.params.id;
+export const updateBlogsById = async (req, res) => {
+  const id = req.body._id;
+  const title = req.body.title;
+  const value = req.body.value;
+  const thumbnailUrl = req.body.thumbnailUrl;
+  // console.log(id,title,value,thumbnailUrl);
+  
   let blog;
   try {
-    blog = await Blog.findByIdAndUpdate(blogId, {
-      title,
-      description,
-    });
+    blog = await Blog.findByIdAndUpdate({
+      _id : id
+  },{
+      $set: {
+          title: title,
+          value:value,
+          thumbnailUrl:thumbnailUrl,
+      }
+  });
   } catch (err) {
     return console.log(err);
   }

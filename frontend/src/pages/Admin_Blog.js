@@ -19,11 +19,6 @@ const Admin_Blog = () => {
     }
   };
 
-  const updateBlog = async (id) => {
-    console.log(id);
-    const res = await getBlogById(id);
-  };
-
   let data;
   const call = () => {
     data = getAllBlogs();
@@ -46,10 +41,10 @@ const Admin_Blog = () => {
                   onClick={() => deleteBlog(item._id)}
                   style={{ marginLeft: "auto" }}
                 />
-                <UpdateIcon
-                  onClick={() => updateBlog(item._id)}
-                  style={{ marginLeft: "auto" }}
-                />
+                <Link to="/add" state={item}>
+                  {" "}
+                  <UpdateIcon style={{ marginLeft: "auto" }} />
+                </Link>
                 <Card.Img variant="top" src={item.thumbnailUrl} />
                 <Card.Body>
                   <Card.Title>{item.title}</Card.Title>

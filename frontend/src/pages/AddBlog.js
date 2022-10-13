@@ -1,11 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import RichtextEditor from "./RichtextEditor.js";
 // import Button from 'react-bootstrap/Button';
 // import Form from 'react-bootstrap/Form';
 import { getImageUrl } from "../api/index.js";
 import { StoreImage } from "../api/index.js";
 import "bootstrap/dist/css/bootstrap.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { updateBlogById } from "../api/index.js";
 
 import {
   Card,
@@ -25,19 +26,23 @@ const AddBlog = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState([]);
   const [path, setPath] = useState("");
-  const[thumbnail, setThumbnail] = useState([]);
+  const [thumbnail, setThumbnail] = useState([]);
   const url = "http://localhost:8080/";
+  const location = useLocation();
+  const props = location.state;
+  // console.log(props);
+  // setTitle((props.title)?props.title : "")
   const storeBlog = async () => {
     const thumbnailPath = await StoreImage(thumbnail);
-  //   thumbnailPath.then((a)=>{
-  //     console.log("chch"+a?.data?.data[0].value)
-  // // setdata(a?.data?.data[2].value)
-  //    })
-  const thumbnailUrl = url+thumbnailPath.path.replace(`\\`, `/`);;
+    //   thumbnailPath.then((a)=>{
+    //     console.log("chch"+a?.data?.data[0].value)
+    // // setdata(a?.data?.data[2].value)
+    //    })
+    const thumbnailUrl = url + thumbnailPath.path.replace(`\\`, `/`);
     const data = await createBlog({
       title,
       thumbnailUrl,
-      value
+      value,
     });
     alert("Blog created successfully");
     navigate("/allBlogs");
@@ -47,13 +52,40 @@ const AddBlog = () => {
     e.preventDefault();
     // console.log(file);
     const data = await StoreImage(image);
-    console.log("data0"+data)
+    console.log("data0" + data);
     const path = url + data.path.replace(`\\`, `/`);
     console.log(path);
     setPath(path);
     // console.log("localhost:8080/"+data.path);
   };
+  function set() {
+    if (!title && props) {
+      setTitle(props.title);
+      setValue(props.value);
+    }
+  }
+  useEffect(() => {
+    set();
+  }, [props]);
 
+  const updateBlog = async (_id) => {
+    var thumbnailUrl = "";
+    if (thumbnail.length === 0) {
+      thumbnailUrl = props.thumbnailUrl;
+    } else {
+      const thumbnailPath = await StoreImage(thumbnail);
+      thumbnailUrl = url + thumbnailPath.path.replace(`\\`, `/`);
+      console.log(thumbnailUrl);
+    }
+    const dataa = await updateBlogById({
+      _id,
+      title,
+      value,
+      thumbnailUrl,
+    });
+    alert("updated successfully");
+    // console.log(res);
+  };
   return (
     <div className="wrapper">
       <Card className="shadow-sm  border-0 mt-2">
@@ -74,12 +106,24 @@ const AddBlog = () => {
           </div>
           <form encType="multipart/form-data">
             <div className="form-group">
-            <Label for="title">Post title</Label>
+              <Label for="title">Post thumbnail:-</Label>
               <input
                 type="file"
                 name="image"
                 onChange={(e) => setThumbnail(e.target.files[0])}
               />
+              {props ? (
+                props.thumbnailUrl ? (
+                  <div>
+                    your previous thumbnail is{" "}
+                    <a href={props.thumbnailUrl} target="_blank">
+                      click here
+                    </a>
+                  </div>
+                ) : (
+                  <div>there is not previous thumbnail </div>
+                )
+              ) : null}
             </div>
 
             <div></div>
@@ -87,7 +131,10 @@ const AddBlog = () => {
 
           <div className="my-3">
             <Label for="content">Post Content</Label>
-            <JoiditEditer onChange={(content) => setValue(content)} />
+            <JoiditEditer
+              onChange={(content) => setValue(content)}
+              value={value}
+            />
             {/* {value} */}
           </div>
 
@@ -102,8 +149,12 @@ const AddBlog = () => {
             >
               Create Post
             </Button>
-            <Button className="rounded-0 ms-2" color="danger">
-              Reset Content
+            <Button
+              className="rounded-0 ms-2"
+              onClick={() => updateBlog(props._id)}
+              color="danger"
+            >
+              Update Content
             </Button>
           </Container>
         </CardBody>
