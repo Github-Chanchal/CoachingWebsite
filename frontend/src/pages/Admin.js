@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { updateuser, getuser } from "../api/index.js";
+import { updateuser, getuser, createBlog } from "../api/index.js";
 import Card from "react-bootstrap/Card";
 import { UserAuth } from "../context/AuthContext";
 import Button from "react-bootstrap/Button";
@@ -8,10 +8,11 @@ import {register} from "../api/index.js"
 const Admin = () => {
   const [data, setdata] = useState();
   const [email, setEmail] = useState();
-  const setAdmin=async()=>{
-    const data = await register({
+  const setAdmin=async(req,res)=>{
+    const data = await register(
       email
-    })
+    )
+    alert("Register Successfully as admin")
   }
 
   const { user } = UserAuth();
@@ -37,7 +38,6 @@ const Admin = () => {
         margin: 10,
       }}
     >
-      <form>
         <label>
           Name:
           <input
@@ -49,14 +49,7 @@ const Admin = () => {
             name="name"
           />
         </label>
-        <input
-          type="submit"
-          onSubmit={() => {
-            setAdmin();
-          }}
-          value="Submit"
-        />
-      </form>
+       <button onClick={() => { setAdmin()}}>submit</button>
 
       {data
         ? data.map((users) => {

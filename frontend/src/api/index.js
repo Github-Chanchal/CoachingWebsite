@@ -44,6 +44,7 @@ const StoreImage = async (fileObject) => {
 };
 
 const register = async (email) => {
+  console.log(email)
  if(email){
   const data = {
     email

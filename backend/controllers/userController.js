@@ -3,6 +3,7 @@ import User from "../model/User.js";
 
 export const registerUser = async (req, res) => {
   try {
+    // console.log(req.body.email);
     const user = await User.find({
       email: req.body.email,
     });
@@ -19,7 +20,7 @@ export const registerUser = async (req, res) => {
         role: "Admin",
       });
       res
-        .json({
+        .send({
           message: "Successfully Created",
           data: data,
         })
