@@ -1,11 +1,10 @@
-import mongoose from "mongoose";
 import Blog from "../model/Blog.js";
 
 export const getAllBlogs = async (req,res) => {
   let blogs;
   try {
     blogs = await Blog.find({
-      // email: req.params.email,
+      
     });
     res.json({
       "message":"Blog is available",
@@ -22,7 +21,7 @@ export const getAllBlogs = async (req,res) => {
 
 export const addBlogs = async (req, res) => {
   try {
-    // console.log(req.body);
+    
     const data = await Blog.create({
       ...req.body,
     });
@@ -47,7 +46,6 @@ export const updateBlogsById = async (req, res) => {
   const title = req.body.title;
   const value = req.body.value;
   const thumbnailUrl = req.body.thumbnailUrl;
-  // console.log(id,title,value,thumbnailUrl);
   
   let blog;
   try {

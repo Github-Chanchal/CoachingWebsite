@@ -1,8 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import RichtextEditor from "./RichtextEditor.js";
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
-import { getImageUrl } from "../api/index.js";
+import React, { useState, useEffect } from "react";
 import { StoreImage } from "../api/index.js";
 import "bootstrap/dist/css/bootstrap.css";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -11,7 +7,6 @@ import { updateBlogById } from "../api/index.js";
 import {
   Card,
   CardBody,
-  Form,
   Input,
   Label,
   Button,
@@ -30,14 +25,10 @@ const AddBlog = () => {
   const url = "http://localhost:8080/";
   const location = useLocation();
   const props = location.state;
-  // console.log(props);
-  // setTitle((props.title)?props.title : "")
+
   const storeBlog = async () => {
     const thumbnailPath = await StoreImage(thumbnail);
-    //   thumbnailPath.then((a)=>{
-    //     console.log("chch"+a?.data?.data[0].value)
-    // // setdata(a?.data?.data[2].value)
-    //    })
+
     const thumbnailUrl = url + thumbnailPath.path.replace(`\\`, `/`);
     const data = await createBlog({
       title,
@@ -84,13 +75,11 @@ const AddBlog = () => {
       thumbnailUrl,
     });
     alert("updated successfully");
-    // console.log(res);
   };
   return (
     <div className="wrapper">
       <Card className="shadow-sm  border-0 mt-2">
         <CardBody>
-          {/* {JSON.stringify(post)} */}
           <h3>What going in your mind ?</h3>
           <div className="my-3">
             <Label for="title">Post title</Label>
@@ -135,10 +124,7 @@ const AddBlog = () => {
               onChange={(content) => setValue(content)}
               value={value}
             />
-            {/* {value} */}
           </div>
-
-          {/* file field  */}
 
           <Container className="text-center">
             <Button
@@ -186,6 +172,7 @@ const AddBlog = () => {
             navigator.clipboard.writeText(copyText.value);
 
             // Alert the copied text
+            alert("Copied");
           }}
         >
           <input
@@ -198,11 +185,6 @@ const AddBlog = () => {
         </div>
       </form>
     </div>
-
-    // <>
-    // <RichtextEditor setValue={setValue}/>
-    //         {value}
-    // </>
   );
 };
 export default AddBlog;

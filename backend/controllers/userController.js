@@ -16,7 +16,7 @@ export const registerUser = async (req, res) => {
     } else {
       const data = await User.create({
         email: req.body.email,
-        role: req.body.role,
+        role: "Admin",
       });
       res
         .json({
@@ -38,6 +38,24 @@ export const registerUser = async (req, res) => {
 export const getUser = async (req, res) => {
   try {
     const user = await User.find({});
+    res.send({ user: user });
+  } catch (error) {
+    res
+      .send({
+        message: "Some Error on Server",
+        error,
+      })
+      .status(400);
+  }
+};
+
+
+export const getUserByEmail = async (req, res) => {
+  // console.log(req.params.email);
+  try {
+    const user = await User.find({
+      email: req.params.email,
+    });
     res.send({ user: user });
   } catch (error) {
     res

@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { deleteBlogs } from "../api/index.js";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UpdateIcon from "@mui/icons-material/Update";
-import { getBlogById } from "../api/index.js";
 
 const Admin_Blog = () => {
   const [dataa, setdata] = useState();

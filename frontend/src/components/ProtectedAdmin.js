@@ -11,7 +11,7 @@ const ProtectedAdmin = ({ children }) => {
         const email = user.email;
         const role = "user";
         const data = await register(email, role);
-        console.log(data?.data?.data[0].role);
+        // console.log(data?.data?.data[0].role);
         setRole(data?.data?.data[0].role);
       }
       useEffect(() => {

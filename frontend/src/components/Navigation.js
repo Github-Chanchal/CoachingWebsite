@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import { GoogleButton } from "react-google-button";
-import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
-import { register } from "../api/index";
+import {getUsersById} from "../api/index";
+
 function NavigationBar() {
   const { logOut } = UserAuth();
   const { googleSignIn, user } = UserAuth();
@@ -32,10 +31,12 @@ function NavigationBar() {
   };
   async function userlogin() {
     const email = user.email;
-    const role = "user";
-    const data = await register(email, role);
-    console.log(data?.data?.data[0].role);
-    setRole(data?.data?.data[0].role);
+    // console.log(email);
+    const data = await getUsersById(email);
+    console.log(data);
+    console.log(data?.data.user[0].role);
+    // console.log(data?.data?.data[0].role);
+    setRole(data?.data.user[0].role);
   }
   useEffect(() => {
     if (user) {

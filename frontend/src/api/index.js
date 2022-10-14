@@ -13,6 +13,10 @@ const getAllBlogs = async () => {
   return await axios.get(URL + "/api/blogs/getBlogs");
 };
 
+const getUsersById = async(email) =>{
+    return await axios.get(URL + "/user/" + email)
+}
+
 const deleteBlogs = async (id) => {
     return await axios.delete(URL + "/api/blogs/deleteBlog/"+ id);
 }
@@ -39,10 +43,10 @@ const StoreImage = async (fileObject) => {
   return data;
 };
 
-const register = async (email,role) => {
+const register = async (email) => {
  if(email){
   const data = {
-    email,role
+    email
   };
   // console.log("data", data);
   return await axios.post(URL + "/user", data);
@@ -65,4 +69,4 @@ const updateuser = async (users) => {
    return await axios.put(URL + "/user",users);
   };
 
-export { createBlog, getAllBlogs, StoreImage,deleteBlogs ,register,updateuser,getuser,getBlogById,updateBlogById};
+export { createBlog, getAllBlogs, StoreImage,deleteBlogs ,register,updateuser,getuser,getBlogById,updateBlogById,getUsersById};
